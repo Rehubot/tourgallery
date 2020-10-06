@@ -1,13 +1,14 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 import Sidebar from "./Sidebar";
 import About from "./About";
 import Home from "./Home";
 import Gallery from "./Gallery";
 import Contact from "./Contact";
 import FAQ from "./FAQ";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Event from "./Event";
+import { BrowserRouter as Router,withRouter, Route, Switch } from "react-router-dom";
 import loadScript from "../hooks/loadScript";
-// import Container from "./Container";
 
 // const App = props => {
 //   loadScript('../assets/js/jquery.min.js');
@@ -19,21 +20,61 @@ import loadScript from "../hooks/loadScript";
 //   loadScript('../assets/js/jquery.fancybox.min.js');
 //   loadScript('../assets/js/main.js');
 // }
+const routes = [
+  {
+    name: "home",
+    path: "/",
+    exact: true,
+    main:  <Home />,
+  },
+  {
+    name: "home",
+    path: "/home",
+    main:  <Home />,
+  },
+  {
+    name: "gallery",
+    path: "/gallery",
+    main:  <Gallery />,
+  },
+  {
+    name: "events",
+    path: "/events",
+    main:  <Event />,
+  },
+  {
+    name: "faq",
+    path: "/faq",
+    main: <FAQ />,
+  },
+  {
+    name: "aboutus",
+    path: "/aboutus",
+    main:  <About />,
+  },
+  {
+    name: "contactus",
+    path: "/contactus",
+    main:  <Contact />,
+  },
+];
 class App extends Component {
   render() {
     return (
       <Router>
         <div>
+          <Sidebar />
+        </div>
+        <div className="annie-main">
           <Switch>
-            <Sidebar>
-              <Route exact path="/" component={Home} />
-              <Route path="/home" component={Home} />
-              <Route path="/gallery" component={Gallery} />
-              <Route path="/events" component={Event} />
-              <Route path="/faq" component={FAQ} />
-              <Route path="/aboutus" component={About} />
-              <Route path="/contactus" component={Contact} />
-            </Sidebar>
+            {routes.map((route, index) => (
+              <Route
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                children={route.main}
+              />
+            ))}
           </Switch>
         </div>
       </Router>
@@ -41,4 +82,11 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    token: state.authentication.token,
+  };
+};
+
+const MainContainer = withRouter(connect(mapStateToProps, null)(App)); 
 export default App;

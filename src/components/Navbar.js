@@ -1,15 +1,6 @@
 import React from "react";
-// import { BrowserRouter as Router, Link } from "react-router-dom";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link,withRouter } from "react-router-dom";
 
-const routes = [
-  {
-    path: "/",
-    exact: true,
-    sidebar: () => <div>home!</div>,
-    main: () => Home,
-  },
-];
 class Navbar extends React.Component {
   render() {
     return (
@@ -43,4 +34,4 @@ class Navbar extends React.Component {
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);

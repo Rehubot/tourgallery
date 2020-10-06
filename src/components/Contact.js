@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import PageTitle from './PageTitle';
 
 function Contact(props) {
     return (
       <div>
-        <h1>contact</h1>
+      <PageTitle title="this is contact us"></PageTitle>
       </div>
     );
   }

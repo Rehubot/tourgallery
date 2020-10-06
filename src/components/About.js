@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import PageTitle from './PageTitle';
 
 function About(props) {
     return (
       <div>
-        <h1>about</h1>
+      <PageTitle title="This is about us"></PageTitle>
       </div>
     );
   }
