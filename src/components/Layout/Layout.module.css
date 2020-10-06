@@ -1,0 +1,8 @@
+.Layout {
+	min-height: 100vh !important;
+}
+
+.Layout .Content {
+	flex: 1;
+	/* margin: 55px 25px; */
+}
